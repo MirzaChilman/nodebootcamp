@@ -1,0 +1,15 @@
+<% include ../Partials/header %>
+<div>
+    <a href="/article/create"><button>New Data</button></a>
+
+    <% data.map(datum => { %>
+        <hr>
+        <p><%= datum.title %></p>
+        <p><%= datum.description %></p>
+        <a href="/article/edit/<%= datum._id %>">edit</a>
+        <a href="/article/delete/<%= datum._id %>">delete</a>
+        <hr>
+    <% }) %>
+</div>
+
+<% include ../Partials/footer %>
