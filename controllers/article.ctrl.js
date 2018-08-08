@@ -13,7 +13,8 @@ module.exports = {
     });
   },
   createPost: (req, res) => {
-    Article.create(req.body, (err, data) => {
+    const sudahJson = JSON.parse(req.body.dataKirim);
+    Article.create(sudahJson, (err, data) => {
       if (err) throw err;
       return res.json(data);
     });
@@ -35,6 +36,12 @@ module.exports = {
   },
   delete: (req, res) => {
     Article.findByIdAndRemove(req.params.id, err => {
+      if (err) throw err;
+      return res.send(200);
+    });
+  },
+  deleteAll: (req, res) => {
+    Article.remove({}, err => {
       if (err) throw err;
       return res.send(200);
     });

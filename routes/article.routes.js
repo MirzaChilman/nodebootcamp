@@ -27,6 +27,7 @@ router.put("/edit/:id", articleCtrl.editPost);
 /article/delete/:id
 */
 router.get("/delete/:id", articleCtrl.delete);
+router.get("/delete/semua/all", articleCtrl.deleteAll);
 
 module.exports = router;
 

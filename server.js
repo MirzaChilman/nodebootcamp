@@ -3,6 +3,7 @@ const express = require("express"),
   methodOverride = require("method-override"),
   mongoose = require("mongoose"),
   path = require("path"),
+  cors = require("cors"),
   app = express();
 
 /* ========================= */
@@ -17,8 +18,10 @@ mongoose.connect(
 console.log(path.join(__dirname, "views"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(methodOverride("_method"));
+app.use(cors());
 
 /* start define route */
 const articleRoutes = require("./routes/article.routes");
