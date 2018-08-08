@@ -3,7 +3,7 @@ module.exports = {
   getAll: (req, res) => {
     Article.find({}, (err, data) => {
       if (err) throw err;
-      return res.render("article/dashboard-article", { data });
+      return res.json(data);
     });
   },
   createForm: (req, res) => {
@@ -13,9 +13,9 @@ module.exports = {
     });
   },
   createPost: (req, res) => {
-    Article.create(req.body, (err, _) => {
+    Article.create(req.body, (err, data) => {
       if (err) throw err;
-      return res.redirect("/article");
+      return res.json(data);
     });
   },
   editForm: (req, res) => {
@@ -28,15 +28,15 @@ module.exports = {
     });
   },
   editPost: (req, res) => {
-    Article.findByIdAndUpdate(req.params.id, req.body, (err, _) => {
+    Article.findByIdAndUpdate(req.params.id, req.body, (err, data) => {
       if (err) throw err;
-      return res.redirect("/article");
+      return res.json(data);
     });
   },
   delete: (req, res) => {
     Article.findByIdAndRemove(req.params.id, err => {
       if (err) throw err;
-      return res.redirect("/article");
+      return res.send(200);
     });
   }
 };
